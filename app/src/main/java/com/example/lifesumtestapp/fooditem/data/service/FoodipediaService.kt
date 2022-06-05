@@ -8,6 +8,6 @@ interface FoodipediaService {
 
     @GET("v2/foodipedia/codetest")
     suspend fun getFoodItem(
-        @Query("foodid") foodId: String,
+        @Query("foodid") foodId: Int,
     ): FoodItemResponse
 }

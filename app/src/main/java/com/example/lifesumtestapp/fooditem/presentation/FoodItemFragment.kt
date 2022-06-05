@@ -1,17 +1,23 @@
 package com.example.lifesumtestapp.fooditem.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.lifesumtestapp.R
 import com.example.lifesumtestapp.core.ProvidersHolder
 import com.example.lifesumtestapp.databinding.FragmentFirstBinding
 import com.example.lifesumtestapp.fooditem.di.FoodItemScreenComponent
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class FoodItemFragment : Fragment() {
@@ -38,7 +44,20 @@ class FoodItemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            viewModel.reload()
+//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        observeViewModelState()
+    }
+
+    private fun observeViewModelState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { state: ViewModelState ->
+                    Log.e("DD", "model $state")
+                }
+            }
         }
     }
 

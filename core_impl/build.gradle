@@ -26,6 +26,7 @@ dependencies {
     implementation libs.dagger
     implementation libs.okhttp
     implementation libs.moshi.core
+    implementation libs.moshi.kotlin
     implementation libs.retrofit.converterMoshi
     implementation libs.retrofit.core
 
