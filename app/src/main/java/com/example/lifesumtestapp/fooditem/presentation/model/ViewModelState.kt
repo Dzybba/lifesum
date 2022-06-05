@@ -6,7 +6,16 @@ sealed class ViewModelState {
 
     object ErrorState : ViewModelState()
 
-    data class LoadedState(
-        val foodItem: FoodItemModel
-    ) : ViewModelState()
+    class LoadedState(
+        val foodItemData: FoodItemData
+    ) : ViewModelState() {
+
+        class FoodItemData(
+            val title: String,
+            val calories: Int,
+            val carbs: Float,
+            val protein: Float,
+            val fat: Float
+        )
+    }
 }

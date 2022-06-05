@@ -1,45 +1,46 @@
 package com.example.lifesumtestapp.fooditem.presentation.mapper
 
-import android.content.Context
+import android.content.res.Resources
 import com.example.lifesumtestapp.R
-import com.example.lifesumtestapp.core.ApplicationContext
-import com.example.lifesumtestapp.fooditem.data.dto.FoodItemResponse
 import com.example.lifesumtestapp.fooditem.domain.GetFoodComponentPercentUseCase
-import com.example.lifesumtestapp.fooditem.presentation.model.FoodItemModel
+import com.example.lifesumtestapp.fooditem.presentation.model.FoodItemRender
+import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
 import com.example.lifesumtestapp.fooditem.presentation.view.FoodCompositionItemModel
 import com.example.lifesumtestapp.fooditem.presentation.view.FoodItemCircleModel
 import javax.inject.Inject
 
-class ResponseToFoodItemModelMapper
+class FoodItemDataToRenderMapper
 @Inject constructor(
-    @ApplicationContext private val context: Context,
     private val getFoodComponentPercentUseCase: GetFoodComponentPercentUseCase
 ) {
 
-    fun map(response: FoodItemResponse): FoodItemModel {
+    fun map(
+        resources: Resources,
+        foodItemData: ViewModelState.LoadedState.FoodItemData
+    ): FoodItemRender {
         val circleModel = FoodItemCircleModel(
-            title = response.response.title,
-            calories = response.response.calories
+            title = foodItemData.title,
+            calories = foodItemData.calories
         )
         val carbsModel = getCompositionItemModel(
-            title = context.getString(R.string.food_composition_carbs).toUpperCase(),
-            targetComponent = response.response.carbs,
-            secondComponent = response.response.protein,
-            thirdComponent = response.response.fat
+            title = resources.getString(R.string.food_composition_carbs).toUpperCase(),
+            targetComponent = foodItemData.carbs,
+            secondComponent = foodItemData.protein,
+            thirdComponent = foodItemData.fat
         )
         val proteinModel = getCompositionItemModel(
-            title = context.getString(R.string.food_composition_protein).toUpperCase(),
-            targetComponent = response.response.protein,
-            secondComponent = response.response.carbs,
-            thirdComponent = response.response.fat
+            title = resources.getString(R.string.food_composition_protein).toUpperCase(),
+            targetComponent = foodItemData.protein,
+            secondComponent = foodItemData.carbs,
+            thirdComponent = foodItemData.fat
         )
         val fatModel =  getCompositionItemModel(
-            title = context.getString(R.string.food_composition_fat).toUpperCase(),
-            targetComponent = response.response.fat,
-            secondComponent = response.response.carbs,
-            thirdComponent = response.response.protein
+            title = resources.getString(R.string.food_composition_fat).toUpperCase(),
+            targetComponent = foodItemData.fat,
+            secondComponent = foodItemData.carbs,
+            thirdComponent = foodItemData.protein
         )
-        return FoodItemModel(
+        return FoodItemRender(
             foodItemCircleModel = circleModel,
             carbs = carbsModel,
             protein = proteinModel,
