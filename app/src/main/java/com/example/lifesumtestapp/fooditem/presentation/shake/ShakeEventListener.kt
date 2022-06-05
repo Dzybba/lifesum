@@ -6,7 +6,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import kotlin.math.sqrt
 
-private const val CRITICAL_ACCELERATION_VALUE = 12
+private const val CRITICAL_ACCELERATION_VALUE = 20
 
 class ShakeEventListener(
     private val onShakeEventAction: () -> Unit

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.lifesumtestapp.fooditem.data.repository.FoodipediaRepository
+import com.example.lifesumtestapp.fooditem.domain.GetRandomFoodItemUseCase
 import com.example.lifesumtestapp.fooditem.presentation.mapper.ResponseToFoodItemModelMapper
 import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FoodItemViewModel(
-    private val repository: FoodipediaRepository,
+    private val getRandomFoodItemUseCase: GetRandomFoodItemUseCase,
     private val responseToFoodItemModelMapper: ResponseToFoodItemModelMapper
 ): ViewModel() {
 
@@ -28,7 +29,7 @@ class FoodItemViewModel(
     private fun loadData() {
         viewModelScope.launch {
             _uiState.value = ViewModelState.LoadingState
-            val result = repository.getFoodItem(2)
+            val result = getRandomFoodItemUseCase.getRandomFoodItem()
             _uiState.value = if (result.isSuccess) {
                 val model = responseToFoodItemModelMapper.map(result.getOrThrow())
                 ViewModelState.LoadedState(model)
@@ -45,7 +46,7 @@ class FoodItemViewModel(
     class Factory
     @Inject constructor(
         owner: SavedStateRegistryOwner,
-        private val repository: FoodipediaRepository,
+        private val getRandomFoodItemUseCase: GetRandomFoodItemUseCase,
         private val responseToFoodItemModelMapper: ResponseToFoodItemModelMapper
     ) : AbstractSavedStateViewModelFactory(owner, null) {
 
@@ -54,7 +55,7 @@ class FoodItemViewModel(
             modelClass: Class<T>,
             handle: SavedStateHandle
         ): T {
-            return FoodItemViewModel(repository, responseToFoodItemModelMapper) as T
+            return FoodItemViewModel(getRandomFoodItemUseCase, responseToFoodItemModelMapper) as T
         }
     }
 }
