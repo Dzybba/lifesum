@@ -2,7 +2,7 @@ package com.example.lifesumtestapp.fooditemdetails.presentation.view
 
 import androidx.annotation.ColorInt
 
-class FoodDetailCardModel(
+data class FoodDetailCardModel(
     val title: String,
     val subtitle: String,
     val progress: Int,

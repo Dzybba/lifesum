@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.annotation.AttrRes
 import androidx.cardview.widget.CardView
 import com.example.lifesumtestapp.R
-import com.example.lifesumtestapp.databinding.FoodDetailsCardLayoutBinding
+import com.example.lifesumtestapp.databinding.FoodDetailsCardContentLayoutBinding
 
 class FoodDetailCardView
 @JvmOverloads constructor(
@@ -15,10 +15,10 @@ class FoodDetailCardView
     @AttrRes defStyleAttr: Int = 0
 ) : CardView(context, attrs, defStyleAttr) {
 
-    private val binding by lazy(LazyThreadSafetyMode.NONE) { FoodDetailsCardLayoutBinding.bind(this) }
+    private val binding by lazy(LazyThreadSafetyMode.NONE) { FoodDetailsCardContentLayoutBinding.bind(this) }
 
     init {
-        inflate(context, R.layout.food_details_card_layout, this)
+        inflate(context, R.layout.food_details_card_content_layout, this)
     }
 
     fun populate(model: FoodDetailCardModel) {
