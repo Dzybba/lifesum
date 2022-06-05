@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BaseTextStyle">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:hyphenationFrequency">none</item>
+    </style>
+
+    <style name="HeadingH1" parent="BaseTextStyle">
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="HeadingH2" parent="BaseTextStyle">
+        <item name="android:textSize">50sp</item>
+        <item name="firstBaselineToTopHeight">44dp</item>
+    </style>
+
+    <style name="HeadingH3" parent="BaseTextStyle">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="ParagraphP1" parent="BaseTextStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ParagraphP2" parent="BaseTextStyle">
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

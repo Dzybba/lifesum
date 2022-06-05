@@ -1,6 +1,4 @@
-package com.example.lifesumtestapp.fooditem.presentation
-
-import com.example.lifesumtestapp.fooditem.data.dto.FoodItemResponse
+package com.example.lifesumtestapp.fooditem.presentation.model
 
 sealed class ViewModelState {
 
@@ -9,6 +7,6 @@ sealed class ViewModelState {
     object ErrorState : ViewModelState()
 
     data class LoadedState(
-        val foodItem: FoodItemResponse
+        val foodItem: FoodItemModel
     ) : ViewModelState()
 }

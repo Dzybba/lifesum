@@ -17,6 +17,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.lifesumtestapp.core.ProvidersHolder
 import com.example.lifesumtestapp.databinding.FragmentFirstBinding
 import com.example.lifesumtestapp.fooditem.di.FoodItemScreenComponent
+import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
 import com.example.lifesumtestapp.fooditem.presentation.shake.ShakeEventListener
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
@@ -63,8 +64,22 @@ class FoodItemFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state: ViewModelState ->
-                    Log.e("DD", "model $state")
+                    handlViewModelState(state)
                 }
+            }
+        }
+    }
+
+    private fun handlViewModelState(state: ViewModelState) {
+        when (state) {
+            is ViewModelState.ErrorState -> {
+                // todo show error
+            }
+            is ViewModelState.LoadedState -> {
+                binding.foodItemCircle.populate(state.foodItem.foodItemCircleModel)
+            }
+            is ViewModelState.LoadingState -> {
+                // todo show loading
             }
         }
     }

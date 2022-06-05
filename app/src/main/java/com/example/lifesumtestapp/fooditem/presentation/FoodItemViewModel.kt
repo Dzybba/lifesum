@@ -6,13 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.lifesumtestapp.fooditem.data.repository.FoodipediaRepository
+import com.example.lifesumtestapp.fooditem.presentation.mapper.ResponseToFoodItemModelMapper
+import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FoodItemViewModel(
-    private val repository: FoodipediaRepository
+    private val repository: FoodipediaRepository,
+    private val responseToFoodItemModelMapper: ResponseToFoodItemModelMapper
 ): ViewModel() {
 
     private val _uiState = MutableStateFlow<ViewModelState>(ViewModelState.LoadingState)
@@ -27,7 +30,8 @@ class FoodItemViewModel(
             _uiState.value = ViewModelState.LoadingState
             val result = repository.getFoodItem(1)
             _uiState.value = if (result.isSuccess) {
-                ViewModelState.LoadedState(result.getOrThrow())
+                val model = responseToFoodItemModelMapper.map(result.getOrThrow())
+                ViewModelState.LoadedState(model)
             } else {
                 ViewModelState.ErrorState
             }
@@ -41,7 +45,8 @@ class FoodItemViewModel(
     class Factory
     @Inject constructor(
         owner: SavedStateRegistryOwner,
-        private val repository: FoodipediaRepository
+        private val repository: FoodipediaRepository,
+        private val responseToFoodItemModelMapper: ResponseToFoodItemModelMapper
     ) : AbstractSavedStateViewModelFactory(owner, null) {
 
         override fun <T : ViewModel?> create(
@@ -49,7 +54,7 @@ class FoodItemViewModel(
             modelClass: Class<T>,
             handle: SavedStateHandle
         ): T {
-            return FoodItemViewModel(repository) as T
+            return FoodItemViewModel(repository, responseToFoodItemModelMapper) as T
         }
     }
 }
