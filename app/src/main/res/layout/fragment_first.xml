@@ -44,12 +44,20 @@
         app:layout_constraintStart_toEndOf="@id/food_composition_protein"
         app:layout_constraintTop_toBottomOf="@id/food_item_circle" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_first"
-        android:layout_width="wrap_content"
+        style="@style/ParagraphP1"
+        android:padding="20dp"
+        android:backgroundTint="@color/black"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/next"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/more_info_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="40dp"
+        android:elevation="50dp"
+        android:layout_marginBottom="40dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
