@@ -10,35 +10,28 @@
     tools:parentTag="android.widget.LinearLayout">
 
     <TextView
-        android:id="@+id/food_item_title"
-        style="@style/HeadingH3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/line_drawable"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="?colorOnPrimary"
-        tools:text="Title" />
-
-    <TextView
-        android:id="@+id/food_item_calories_num"
-        style="@style/HeadingH2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
-        android:textColor="?colorOnPrimary"
-        tools:text="400" />
-
-    <TextView
-        android:id="@+id/food_item_calories_text"
+        android:id="@+id/food_composition_title"
         style="@style/ParagraphP1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/food_item_calories_per_serving"
-        android:textColor="?colorOnPrimary"
-        android:textStyle="italic" />
+        android:background="@drawable/line_drawable"
+        android:backgroundTint="#FFBFBFBF"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="?colorSecondary"
+        android:minWidth="80dp"
+        android:textAlignment="center"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/food_composition_percent"
+        style="@style/ParagraphP1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="?colorSecondary"
+        android:paddingTop="10dp"
+        tools:text="60%"
+        />
 </merge>

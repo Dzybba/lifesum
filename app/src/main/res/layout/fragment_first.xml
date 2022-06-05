@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dp"
+    android:paddingTop="40dp"
     tools:context=".fooditem.presentation.FoodItemFragment">
 
     <com.example.lifesumtestapp.fooditem.presentation.view.FoodItemCircleView
@@ -12,11 +12,37 @@
         android:layout_width="270dp"
         android:layout_height="270dp"
         android:background="@drawable/food_item_background"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:elevation="10dp"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.lifesumtestapp.fooditem.presentation.view.FoodCompositionItemView
+        android:id="@+id/food_composition_carbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        app:layout_constraintEnd_toStartOf="@id/food_composition_protein"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/food_item_circle" />
+
+    <com.example.lifesumtestapp.fooditem.presentation.view.FoodCompositionItemView
+        android:id="@+id/food_composition_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        app:layout_constraintEnd_toStartOf="@id/food_composition_fat"
+        app:layout_constraintStart_toEndOf="@id/food_composition_carbs"
+        app:layout_constraintTop_toBottomOf="@id/food_item_circle" />
+
+    <com.example.lifesumtestapp.fooditem.presentation.view.FoodCompositionItemView
+        android:id="@+id/food_composition_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/food_composition_protein"
+        app:layout_constraintTop_toBottomOf="@id/food_item_circle" />
 
     <Button
         android:id="@+id/button_first"

@@ -77,6 +77,9 @@ class FoodItemFragment : Fragment() {
             }
             is ViewModelState.LoadedState -> {
                 binding.foodItemCircle.populate(state.foodItem.foodItemCircleModel)
+                binding.foodCompositionCarbs.populate(state.foodItem.carbs)
+                binding.foodCompositionProtein.populate(state.foodItem.protein)
+                binding.foodCompositionFat.populate(state.foodItem.fat)
             }
             is ViewModelState.LoadingState -> {
                 // todo show loading

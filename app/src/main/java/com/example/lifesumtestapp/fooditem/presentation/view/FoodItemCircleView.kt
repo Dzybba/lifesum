@@ -2,6 +2,8 @@ package com.example.lifesumtestapp.fooditem.presentation.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
+import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.AttrRes
 import com.example.lifesumtestapp.R
@@ -17,6 +19,8 @@ class FoodItemCircleView
     private val binding by lazy(LazyThreadSafetyMode.NONE) { FoodItemCircleLayoutBinding.bind(this) }
 
     init {
+        orientation = VERTICAL
+        gravity = Gravity.CENTER
         inflate(context, R.layout.food_item_circle_layout, this)
     }
 

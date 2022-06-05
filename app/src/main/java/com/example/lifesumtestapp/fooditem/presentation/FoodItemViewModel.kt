@@ -28,7 +28,7 @@ class FoodItemViewModel(
     private fun loadData() {
         viewModelScope.launch {
             _uiState.value = ViewModelState.LoadingState
-            val result = repository.getFoodItem(1)
+            val result = repository.getFoodItem(2)
             _uiState.value = if (result.isSuccess) {
                 val model = responseToFoodItemModelMapper.map(result.getOrThrow())
                 ViewModelState.LoadedState(model)
