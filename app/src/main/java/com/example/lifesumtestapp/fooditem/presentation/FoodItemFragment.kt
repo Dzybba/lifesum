@@ -15,7 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.lifesumtestapp.core.ProvidersHolder
-import com.example.lifesumtestapp.databinding.FragmentFirstBinding
+import com.example.lifesumtestapp.databinding.FragmentFoodItemBinding
 import com.example.lifesumtestapp.fooditem.di.FoodItemScreenComponent
 import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
 import com.example.lifesumtestapp.fooditem.presentation.shake.ShakeEventListener
@@ -34,7 +34,7 @@ class FoodItemFragment : Fragment() {
         viewModel.reload()
     }
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentFoodItemBinding? = null
 
     private val binding get() = _binding!!
 
@@ -44,7 +44,7 @@ class FoodItemFragment : Fragment() {
     ): View {
         sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentFoodItemBinding.inflate(inflater, container, false)
         return binding.root
 
     }
