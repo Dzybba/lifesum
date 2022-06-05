@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id("kotlin-kapt")
 }
 
 android {
@@ -35,6 +36,7 @@ android {
 }
 
 dependencies {
+    kapt libs.dagger.kapt
 
     implementation libs.androidx.coreKtx
     implementation libs.androidx.appcompat
@@ -42,7 +44,12 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
+    implementation libs.dagger
+    implementation libs.retrofit.core
     testImplementation libs.test.junit
     androidTestImplementation libs.test.androidx.junitExt
     androidTestImplementation libs.test.espresso.core
+
+    implementation project(':core_api')
+    implementation project(':core_impl')
 }

@@ -14,6 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "LifesumTestApp"
 include ':app'
+include ':core_api'
+include ':core_impl'
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -26,6 +28,23 @@ dependencyResolutionManagement {
             version('navigationVersion', '2.4.2')
             library('navigation.fragment', 'androidx.navigation', 'navigation-fragment-ktx').versionRef('navigationVersion')
             library('navigation.ui', 'androidx.navigation','navigation-ui-ktx').versionRef('navigationVersion')
+
+            library('javaxInject', 'javax.inject:javax.inject:1')
+
+            version('daggerVersion', '2.40')
+            library('dagger.kapt', 'com.google.dagger', 'dagger-compiler').versionRef('daggerVersion')
+            library('dagger', 'com.google.dagger', 'dagger').versionRef('daggerVersion')
+
+            library('okhttp', 'com.squareup.okhttp3:okhttp:4.9.0')
+
+            version('moshiVersion', '1.11.0')
+            library('moshi.core', 'com.squareup.moshi', 'moshi').versionRef('moshiVersion')
+            library('moshi.kotlin', 'com.squareup.moshi', 'moshi-kotlin').versionRef('moshiVersion')
+            library('moshi.adapters', 'com.squareup.moshi', 'moshi-adapters').versionRef('moshiVersion')
+
+            version('retrofitVersion', '2.9.0')
+            library('retrofit.core', 'com.squareup.retrofit2', 'retrofit').versionRef('retrofitVersion')
+            library('retrofit.converterMoshi', 'com.squareup.retrofit2', 'converter-moshi').versionRef('retrofitVersion')
 
             library('test.junit', 'junit:junit:4.13.2')
             library('test.androidx.junitExt', 'androidx.test.ext:junit:1.1.3')
