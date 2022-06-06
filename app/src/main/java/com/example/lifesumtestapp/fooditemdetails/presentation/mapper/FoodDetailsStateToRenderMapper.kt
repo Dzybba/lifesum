@@ -63,16 +63,16 @@ class FoodDetailsStateToRenderMapper
                 resources.getColor(R.color.teal_200) to resources.getColor(R.color.teal_700)
             }
             FoodDetailViewModelState.DetailType.FIBER -> {
-                resources.getColor(R.color.teal_200) to resources.getColor(R.color.teal_700)
+                resources.getColor(R.color.white) to resources.getColor(R.color.teal_200)
             }
             FoodDetailViewModelState.DetailType.CHOLESTEROL -> {
-                resources.getColor(R.color.teal_200) to resources.getColor(R.color.teal_700)
+                resources.getColor(R.color.purple_200) to resources.getColor(R.color.purple_500)
             }
             FoodDetailViewModelState.DetailType.SUGAR -> {
-                resources.getColor(R.color.teal_200) to resources.getColor(R.color.teal_700)
+                resources.getColor(R.color.white) to resources.getColor(R.color.purple_200)
             }
             FoodDetailViewModelState.DetailType.POTASSIUM -> {
-                resources.getColor(R.color.teal_200) to resources.getColor(R.color.teal_700)
+                resources.getColor(R.color.purple_200) to resources.getColor(R.color.purple_200)
             }
         }
     }
