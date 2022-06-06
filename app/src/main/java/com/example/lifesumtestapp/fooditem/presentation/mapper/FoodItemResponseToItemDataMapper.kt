@@ -1,19 +1,19 @@
 package com.example.lifesumtestapp.fooditem.presentation.mapper
 
-import com.example.lifesumtestapp.fooditem.data.dto.FoodItemResponse
+import com.example.lifesumtestapp.fooditem.domain.model.FoodItemModel
 import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
 import javax.inject.Inject
 
 class FoodItemResponseToItemDataMapper
 @Inject constructor() {
 
-    fun map(response: FoodItemResponse): ViewModelState.LoadedState.FoodItemData {
+    fun map(model: FoodItemModel): ViewModelState.LoadedState.FoodItemData {
         return ViewModelState.LoadedState.FoodItemData(
-            title = response.response.title,
-            calories = response.response.calories,
-            carbs = response.response.carbs,
-            protein = response.response.protein,
-            fat = response.response.fat,
+            title = model.title,
+            calories = model.calories,
+            carbs = model.carbs,
+            protein = model.protein,
+            fat = model.fat,
         )
     }
 }

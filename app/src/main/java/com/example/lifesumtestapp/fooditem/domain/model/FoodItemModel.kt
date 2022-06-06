@@ -1,6 +1,6 @@
-package com.example.lifesumtestapp.fooditem.data.dto
+package com.example.lifesumtestapp.fooditem.domain.model
 
-data class FoodItemDto(
+class FoodItemModel(
     val title: String,
     val calories: Int,
     val carbs: Float,

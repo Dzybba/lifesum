@@ -5,8 +5,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.savedstate.SavedStateRegistryOwner
-import com.example.lifesumtestapp.fooditem.data.dto.FoodItemResponse
 import com.example.lifesumtestapp.fooditem.domain.GetRandomFoodItemUseCase
+import com.example.lifesumtestapp.fooditem.domain.model.FoodItemModel
 import com.example.lifesumtestapp.fooditem.presentation.mapper.FoodItemResponseToFoodDetailsInitDataMapper
 import com.example.lifesumtestapp.fooditem.presentation.mapper.FoodItemResponseToItemDataMapper
 import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
@@ -34,7 +34,7 @@ class FoodItemViewModel(
     )
     val openDetailsFlow = _openDetailsFlow.asSharedFlow()
 
-    private var lastResponse: FoodItemResponse? = null
+    private var lastFoodItemModel: FoodItemModel? = null
 
     init {
         loadData()
@@ -43,11 +43,10 @@ class FoodItemViewModel(
     private fun loadData() {
         viewModelScope.launch {
             _uiState.value = ViewModelState.LoadingState
-            val result = getRandomFoodItemUseCase.getRandomFoodItem()
-            _uiState.value = if (result.isSuccess) {
-                lastResponse = result.getOrThrow()
-                val model = responseToFoodItemDataMapper.map(lastResponse!!)
-                ViewModelState.LoadedState(model)
+            val result = getRandomFoodItemUseCase.getRandomFoodItem().getOrNull()
+            lastFoodItemModel = result
+            _uiState.value = if (result != null) {
+                ViewModelState.LoadedState(responseToFoodItemDataMapper.map(result))
             } else {
                 ViewModelState.ErrorState
             }
@@ -59,8 +58,8 @@ class FoodItemViewModel(
     }
 
     fun onDetailsButtonClicked() {
-        val response = lastResponse ?: return
-        val initData = foodItemResponseToFoodDetailsMapper.map(response)
+        val model = lastFoodItemModel ?: return
+        val initData = foodItemResponseToFoodDetailsMapper.map(model)
         _openDetailsFlow.tryEmit(initData)
     }
 

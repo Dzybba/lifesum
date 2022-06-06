@@ -1,29 +1,28 @@
 package com.example.lifesumtestapp.fooditem.presentation.mapper
 
-import com.example.lifesumtestapp.fooditem.data.dto.FoodItemResponse
+import com.example.lifesumtestapp.fooditem.domain.model.FoodItemModel
 import com.example.lifesumtestapp.fooditemdetails.presentation.FoodDetailInitialData
 import javax.inject.Inject
 
 class FoodItemResponseToFoodDetailsInitDataMapper
 @Inject constructor() {
 
-    fun map(response: FoodItemResponse): FoodDetailInitialData {
-        val dto = response.response
+    fun map(model: FoodItemModel): FoodDetailInitialData {
         return FoodDetailInitialData(
-            title = dto.title,
-            calories = dto.calories,
-            carbs = dto.carbs,
-            protein = dto.protein,
-            fat = dto.fat,
-            saturatedfat = dto.saturatedfat,
-            unsaturatedfat = dto.unsaturatedfat,
-            fiber = dto.fiber,
-            cholesterol = dto.cholesterol,
-            sugar = dto.sugar,
-            sodium = dto.sodium,
-            potassium = dto.potassium,
-            gramsperserving = dto.gramsperserving,
-            pcstext = dto.pcstext
+            title = model.title,
+            calories = model.calories,
+            carbs = model.carbs,
+            protein = model.protein,
+            fat = model.fat,
+            saturatedfat = model.saturatedfat,
+            unsaturatedfat = model.unsaturatedfat,
+            fiber = model.fiber,
+            cholesterol = model.cholesterol,
+            sugar = model.sugar,
+            sodium = model.sodium,
+            potassium = model.potassium,
+            gramsperserving = model.gramsperserving,
+            pcstext = model.pcstext
         )
     }
 }
