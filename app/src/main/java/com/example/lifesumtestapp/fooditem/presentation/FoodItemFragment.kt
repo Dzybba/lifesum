@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.Lifecycle
@@ -81,9 +82,14 @@ class FoodItemFragment : Fragment() {
     private fun handleViewModelState(state: ViewModelState) {
         when (state) {
             is ViewModelState.ErrorState -> {
-                // todo show error
+                binding.errorView.isVisible = true
+                binding.loadingView.isVisible = false
+                binding.mainContentGroup.isVisible = false
             }
             is ViewModelState.LoadedState -> {
+                binding.errorView.isVisible = false
+                binding.loadingView.isVisible = false
+                binding.mainContentGroup.isVisible = true
                 val render = renderMapper.map(resources, state.foodItemData)
                 binding.foodItemCircle.populate(render.foodItemCircleModel)
                 binding.foodCompositionCarbs.populate(render.carbs)
@@ -91,7 +97,9 @@ class FoodItemFragment : Fragment() {
                 binding.foodCompositionFat.populate(render.fat)
             }
             is ViewModelState.LoadingState -> {
-                // todo show loading
+                binding.errorView.isVisible = false
+                binding.mainContentGroup.isVisible = false
+                binding.loadingView.isVisible = true
             }
         }
     }

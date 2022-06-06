@@ -22,4 +22,8 @@
     <string name="food_detail_cholesterol">cholesterol</string>
     <string name="food_detail_sugar">sugar</string>
     <string name="food_detail_potassium">potassium</string>
+
+    <string name="food_item_error">Oops, shake your phone to refresh data</string>
+    <string name="food_item_loading">Loading...</string>
+
 </resources>
