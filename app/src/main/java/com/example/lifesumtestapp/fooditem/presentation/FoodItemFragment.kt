@@ -8,17 +8,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.example.lifesumtestapp.R
 import com.example.lifesumtestapp.core.ProvidersHolder
 import com.example.lifesumtestapp.databinding.FragmentFoodItemBinding
 import com.example.lifesumtestapp.fooditem.di.FoodItemScreenComponent
 import com.example.lifesumtestapp.fooditem.presentation.mapper.FoodItemDataToRenderMapper
 import com.example.lifesumtestapp.fooditem.presentation.model.ViewModelState
 import com.example.lifesumtestapp.fooditem.presentation.shake.ShakeEventListener
+import com.example.lifesumtestapp.fooditemdetails.presentation.FoodDetailInitialData
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -54,26 +58,27 @@ class FoodItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.buttonFirst.setOnClickListener {
-            viewModel.reload()
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            viewModel.onDetailsButtonClicked()
         }
-
-        observeViewModelState()
+        observeViewModelEvents()
     }
 
-    private fun observeViewModelState() {
+    private fun observeViewModelEvents() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { state: ViewModelState ->
-                    handlViewModelState(state)
-                }
+                launch { viewModel.uiState.collect { handleViewModelState(it) } }
+                launch { viewModel.openDetailsFlow.collect { openDetailsScreen(it) } }
             }
         }
     }
 
-    private fun handlViewModelState(state: ViewModelState) {
+    private fun openDetailsScreen(model: FoodDetailInitialData) {
+        val bundle = bundleOf(FoodDetailInitialData.ARGUMENT_KEY to model)
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
+    }
+
+    private fun handleViewModelState(state: ViewModelState) {
         when (state) {
             is ViewModelState.ErrorState -> {
                 // todo show error

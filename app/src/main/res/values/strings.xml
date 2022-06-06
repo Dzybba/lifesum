@@ -14,4 +14,12 @@
     <string name="food_composition_protein">protein</string>
     <string name="food_composition_fat">fat</string>
     <string name="more_info_button">more info</string>
+
+    <string name="food_detail_cals">%d cals / serving</string>
+    <string name="food_detail_unsaturated_fat">%d percent of fat is unsaturated</string>
+    <string name="food_detail_mg_serv">%f mg / serving</string>
+    <string name="food_detail_fiber">fiber</string>
+    <string name="food_detail_cholesterol">cholesterol</string>
+    <string name="food_detail_sugar">sugar</string>
+    <string name="food_detail_potassium">potassium</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.lifesumtestapp.fooditemdetails.di
 
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.lifesumtestapp.core.ProvidersAccumulator
+import com.example.lifesumtestapp.fooditemdetails.presentation.FoodDetailInitialData
 import com.example.lifesumtestapp.fooditemdetails.presentation.FoodDetailsFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -16,12 +17,14 @@ interface FoodDetailsScreenComponent {
 
         fun create(
             providersAccumulator: ProvidersAccumulator,
-            savedStateRegistryOwner: SavedStateRegistryOwner
+            savedStateRegistryOwner: SavedStateRegistryOwner,
+            foodDetailInitialData: FoodDetailInitialData
         ): FoodDetailsScreenComponent {
             return DaggerFoodDetailsScreenComponent.factory()
                 .create(
                     providersAccumulator,
-                    savedStateRegistryOwner
+                    savedStateRegistryOwner,
+                    foodDetailInitialData
                 )
         }
     }
@@ -31,7 +34,8 @@ interface FoodDetailsScreenComponent {
 
         fun create(
             providersAccumulator: ProvidersAccumulator,
-            @BindsInstance savedStateRegistryOwner: SavedStateRegistryOwner
+            @BindsInstance savedStateRegistryOwner: SavedStateRegistryOwner,
+            @BindsInstance foodDetailInitialData: FoodDetailInitialData
         ): FoodDetailsScreenComponent
     }
 

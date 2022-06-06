@@ -5,8 +5,8 @@ import androidx.annotation.ColorInt
 data class FoodDetailCardModel(
     val title: String,
     val subtitle: String,
-    val progress: Int,
-    val progressText: String,
     @ColorInt val startColor: Int,
-    @ColorInt val endColor: Int
+    @ColorInt val endColor: Int,
+    val progress: Int? = null,
+    val progressText: String? = null
 )

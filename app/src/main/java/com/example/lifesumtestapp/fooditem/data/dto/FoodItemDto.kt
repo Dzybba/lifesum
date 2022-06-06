@@ -8,11 +8,11 @@ data class FoodItemDto(
     val fat: Float,
     val saturatedfat: Float,
     val unsaturatedfat: Float,
-    val fiber: Float,
-    val cholesterol: Float,
-    val sugar: Float,
-    val sodium: Float,
-    val potassium: Float,
+    val fiber: Float, // клетчатка
+    val cholesterol: Float, // холестерин
+    val sugar: Float, // сахар
+    val sodium: Float, // натрий
+    val potassium: Float, // калий
     val gramsperserving: Float,
     val pcstext: String
 )
