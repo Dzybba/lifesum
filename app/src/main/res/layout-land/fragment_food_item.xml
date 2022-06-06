@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="40dp"
+    tools:context=".fooditem.presentation.FoodItemFragment">
+
+    <com.example.lifesumtestapp.fooditem.presentation.view.FoodItemCircleView
+        android:id="@+id/food_item_circle"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:background="@drawable/food_item_background"
+        android:elevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <com.example.lifesumtestapp.fooditem.presentation.view.FoodCompositionItemView
+        android:id="@+id/food_composition_carbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        app:layout_constraintEnd_toStartOf="@id/food_composition_protein"
+        app:layout_constraintStart_toEndOf="@id/food_item_circle"
+        app:layout_constraintTop_toTopOf="@id/food_item_circle" />
+
+    <com.example.lifesumtestapp.fooditem.presentation.view.FoodCompositionItemView
+        android:id="@+id/food_composition_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        app:layout_constraintEnd_toStartOf="@id/food_composition_fat"
+        app:layout_constraintStart_toEndOf="@id/food_composition_carbs"
+        app:layout_constraintTop_toTopOf="@id/food_item_circle"
+        />
+
+    <com.example.lifesumtestapp.fooditem.presentation.view.FoodCompositionItemView
+        android:id="@+id/food_composition_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/food_composition_protein"
+        app:layout_constraintTop_toTopOf="@id/food_item_circle"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_first"
+        style="@style/ParagraphP1"
+        android:padding="20dp"
+        android:backgroundTint="@color/black"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/more_info_button"
+        app:layout_constraintBottom_toBottomOf="@id/food_item_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/food_item_circle"
+        app:cornerRadius="40dp"
+        android:elevation="50dp"
+        android:layout_marginBottom="40dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
